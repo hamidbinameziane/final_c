@@ -7,6 +7,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+#this is a comment
 
 
 if __name__ == '__main__':
