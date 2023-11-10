@@ -37,3 +37,7 @@ canvas
 {
     touch-action:none;
 }
+#canvas_h {
+  border: 0px;
+  background-color: #212529;
+}

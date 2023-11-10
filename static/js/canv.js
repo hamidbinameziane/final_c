@@ -1,5 +1,6 @@
-const canvas = document.querySelector('canvas');
+const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
+
 var image = document.getElementById('file')
 var sze = document.getElementById('size')
 var clr = document.getElementById('color')
@@ -16,6 +17,7 @@ var bg5 = document.getElementById('bg5')
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
 
 let save_array = [];
 let redo_array = [];
