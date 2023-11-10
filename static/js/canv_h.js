@@ -1,6 +1,8 @@
 const canvas_h = document.querySelector('#canvas_h');
 const ctx_h = canvas_h.getContext('2d');
 
+var clr_h = document.getElementById('color_h')
+
 
 
 
@@ -77,7 +79,7 @@ function update(t) {
         const yc = .5 * (trail[i].y + trail[i + 1].y);
         ctx_h.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
         ctx_h.lineWidth = params.widthFactor * (params.pointsNumber - i);
-        ctx_h.strokeStyle = '#ffffff';
+        ctx_h.strokeStyle = clr_h.value;
         ctx_h.lineCap = 'round';
         ctx_h.stroke();
     }
@@ -91,3 +93,5 @@ function setupCanvas() {
     canvas_h.width = window.innerWidth;
     canvas_h.height = window.innerHeight;
 }
+
+clr_h.addEventListener('input', () => ctx_h.strokeStyle = clr_h.value)
