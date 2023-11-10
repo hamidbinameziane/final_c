@@ -31,10 +31,10 @@ for (let i = 0; i < params.pointsNumber; i++) {
     }
 }
 
-window.addEventListener("pointerdown", e => {
+canvas_h.addEventListener("pointerdown", e => {
     updateMousePosition(e.pageX, e.pageY);
 });
-window.addEventListener("pointermove", e => {
+canvas_h.addEventListener("pointermove", e => {
     mouseMoved = true;
     updateMousePosition(e.pageX, e.pageY);
 });
@@ -46,7 +46,7 @@ function updateMousePosition(eX, eY) {
 
 setupCanvas();
 update(0);
-window.addEventListener("resize", setupCanvas);
+canvas_h.addEventListener("resize", setupCanvas);
 
 
 function update(t) {

@@ -14,9 +14,8 @@ var bg4 = document.getElementById('bg4')
 var bg5 = document.getElementById('bg5')
 
 
+setupCanvas();
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
 
 let save_array = [];
@@ -147,3 +146,9 @@ bg3.addEventListener('pointerdown', () => document.getElementById('canvas').styl
 bg4.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg4.jpg')")
 bg5.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="")
 
+canvas.addEventListener("resize", setupCanvas);
+
+function setupCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
