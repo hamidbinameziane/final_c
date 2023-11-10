@@ -35,7 +35,6 @@ function end() {
     isDrawing = false;
     save_array.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
     index++;
-    console.log(save_array)
 }
 
 function undo() {
@@ -111,7 +110,7 @@ function draw(e) {
 // stop the function if they are not mouse down
 if(!isDrawing) return;
 //listen for mouse move event
-console.log(e);
+
 ctx.beginPath();
 ctx.moveTo(lastX, lastY);
 ctx.lineTo(e.offsetX, e.offsetY);
