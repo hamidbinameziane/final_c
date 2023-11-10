@@ -93,5 +93,3 @@ function setupCanvas() {
     canvas_h.width = window.innerWidth;
     canvas_h.height = window.innerHeight;
 }
-
-clr_h.addEventListener('input', () => ctx_h.strokeStyle = clr_h.value)
