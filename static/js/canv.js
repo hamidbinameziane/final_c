@@ -24,10 +24,13 @@ let save_array = [];
 let redo_array = [];
 let index = -1;
 let r_index = -1;
+let save_clr = 'black';
+let save_sze = 1;
 
 
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
+sze.value = 1
 
 let isDrawing = false;
 let lastX = 0;
@@ -143,14 +146,16 @@ clear.addEventListener('pointerdown', () => {
     r_index = -1;
 })
 eraser.addEventListener('pointerdown', () => {
+    save_clr = clr.value
+    save_sze = sze.value
     ctx.strokeStyle = 'white'
     ctx.lineWidth = 20
     sze.value = 20
 })
 pencil.addEventListener('pointerdown', () => {
-    ctx.strokeStyle = 'black'
-    ctx.lineWidth = 1
-    sze.value = 1
+    ctx.strokeStyle = save_clr
+    ctx.lineWidth = save_sze
+    sze.value = save_sze
 })
 bg.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg.jpg')")
 bg2.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg2.jpg')")
