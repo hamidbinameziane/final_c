@@ -8,6 +8,7 @@ var und = document.getElementById('undo')
 var rdo = document.getElementById('redo')
 var clear = document.getElementById('clear')
 var eraser = document.getElementById('eraser')
+var pencil = document.getElementById('pencil')
 var bg = document.getElementById('bg')
 var bg2 = document.getElementById('bg2')
 var bg3 = document.getElementById('bg3')
@@ -145,6 +146,11 @@ eraser.addEventListener('pointerdown', () => {
     ctx.strokeStyle = 'white'
     ctx.lineWidth = 20
     sze.value = 20
+})
+pencil.addEventListener('pointerdown', () => {
+    ctx.strokeStyle = 'black'
+    ctx.lineWidth = 1
+    sze.value = 1
 })
 bg.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg.jpg')")
 bg2.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg2.jpg')")
