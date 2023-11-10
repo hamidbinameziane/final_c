@@ -34,13 +34,9 @@ for (let i = 0; i < params.pointsNumber; i++) {
 window.addEventListener("click", e => {
     updateMousePosition(e.pageX, e.pageY);
 });
-window.addEventListener("mousemove", e => {
+window.addEventListener("pointermove", e => {
     mouseMoved = true;
     updateMousePosition(e.pageX, e.pageY);
-});
-window.addEventListener("touchmove", e => {
-    mouseMoved = true;
-    updateMousePosition(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
 });
 
 function updateMousePosition(eX, eY) {
@@ -82,6 +78,7 @@ function update(t) {
         ctx_h.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
         ctx_h.lineWidth = params.widthFactor * (params.pointsNumber - i);
         ctx_h.strokeStyle = '#ffffff';
+        ctx_h.lineCap = 'round';
         ctx_h.stroke();
     }
     ctx_h.lineTo(trail[trail.length - 1].x, trail[trail.length - 1].y);
