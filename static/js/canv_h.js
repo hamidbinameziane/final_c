@@ -31,7 +31,7 @@ for (let i = 0; i < params.pointsNumber; i++) {
     }
 }
 
-window.addEventListener("click", e => {
+window.addEventListener("pointerdown", e => {
     updateMousePosition(e.pageX, e.pageY);
 });
 window.addEventListener("pointermove", e => {
