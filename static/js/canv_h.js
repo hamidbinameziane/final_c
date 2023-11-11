@@ -5,9 +5,6 @@ var clr_h = document.getElementById('color_h')
 
 
 
-
-
-
 // for intro motion
 let mouseMoved = false;
 
@@ -18,7 +15,7 @@ const pointer = {
 const params = {
     pointsNumber: 40,
     widthFactor: .3,
-    mouseThreshold: .6,
+    mouseThreshold: 1.6,
     spring: .4,
     friction: .5
 };
@@ -32,10 +29,6 @@ for (let i = 0; i < params.pointsNumber; i++) {
         dy: 0,
     }
 }
-
-canvas_h.addEventListener("pointerdown", e => {
-    updateMousePosition(e.pageX, e.pageY);
-});
 canvas_h.addEventListener("pointermove", e => {
     mouseMoved = true;
     updateMousePosition(e.pageX, e.pageY);
@@ -49,6 +42,7 @@ function updateMousePosition(eX, eY) {
 setupCanvas();
 update(0);
 canvas_h.addEventListener("resize", setupCanvas);
+canvas_h.addEventListener("pointerout", () => mouseMoved = false);
 
 
 function update(t) {
