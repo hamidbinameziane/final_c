@@ -13,9 +13,8 @@ const pointer = {
     y: .5 * window.innerHeight,
 }
 const params = {
-    pointsNumber: 40,
-    widthFactor: .3,
-    mouseThreshold: 1.6,
+    pointsNumber: 20,
+    widthFactor: .9,
     spring: .4,
     friction: .5
 };
