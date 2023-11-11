@@ -33,6 +33,7 @@ ctx.lineCap = 'round';
 sze.value = 1
 
 let isDrawing = false;
+let isEraser = false;
 let lastX = 0;
 let lastY = 0;
 
@@ -135,7 +136,14 @@ canvas.addEventListener('pointerdown', (e) => {
 
 image.addEventListener('change', draw_img)
 sze.addEventListener('input', size)
-clr.addEventListener('input', () => ctx.strokeStyle = clr.value)
+clr.addEventListener('input', () => {
+    if (!isEraser) {
+        ctx.strokeStyle = clr.value
+    }
+    else {
+        save_clr = clr.value
+    }
+})
 und.addEventListener('pointerdown', undo)
 rdo.addEventListener('pointerdown', redo)
 clear.addEventListener('pointerdown', () => {
@@ -146,6 +154,7 @@ clear.addEventListener('pointerdown', () => {
     r_index = -1;
 })
 eraser.addEventListener('pointerdown', () => {
+    isEraser = true
     save_clr = clr.value
     save_sze = sze.value
     ctx.strokeStyle = 'white'
@@ -153,6 +162,7 @@ eraser.addEventListener('pointerdown', () => {
     sze.value = 20
 })
 pencil.addEventListener('pointerdown', () => {
+    isEraser = false
     ctx.strokeStyle = save_clr
     ctx.lineWidth = save_sze
     sze.value = save_sze
