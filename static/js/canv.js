@@ -15,8 +15,11 @@ var bg3 = document.getElementById('bg3')
 var bg4 = document.getElementById('bg4')
 var bg5 = document.getElementById('bg5')
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-setupCanvas();
+
+
 
 
 
@@ -167,15 +170,26 @@ pencil.addEventListener('pointerdown', () => {
     ctx.lineWidth = save_sze
     sze.value = save_sze
 })
+eraser.addEventListener("TouchDown", () => {
+    isEraser = true
+    save_clr = clr.value
+    save_sze = sze.value
+    ctx.strokeStyle = 'white'
+    ctx.lineWidth = 20
+    sze.value = 20
+})
+pencil.addEventListener("TouchDown", () => {
+    isEraser = false
+    ctx.strokeStyle = save_clr
+    ctx.lineWidth = save_sze
+    sze.value = save_sze
+})
 bg.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg.jpg')")
 bg2.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg2.jpg')")
 bg3.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg3.jpg')")
 bg4.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="url('static/image/bg4.jpg')")
 bg5.addEventListener('pointerdown', () => document.getElementById('canvas').style.backgroundImage="")
 
-canvas.addEventListener("resize", setupCanvas);
 
-function setupCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+
+

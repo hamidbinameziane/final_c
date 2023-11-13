@@ -8,15 +8,19 @@ var clr_h = document.getElementById('color_h')
 // for intro motion
 let mouseMoved = false;
 
+
+
+
+
 const pointer = {
     x: .5 * window.innerWidth,
     y: .5 * window.innerHeight,
 }
 const params = {
-    pointsNumber: 20,
-    widthFactor: .9,
-    spring: .4,
-    friction: .5
+    pointsNumber: 15,
+    widthFactor: 1,
+    spring: .3,
+    friction: .55
 };
 
 const trail = new Array(params.pointsNumber);
@@ -30,7 +34,7 @@ for (let i = 0; i < params.pointsNumber; i++) {
 }
 canvas_h.addEventListener("pointermove", e => {
     mouseMoved = true;
-    updateMousePosition(e.pageX, e.pageY);
+    updateMousePosition(e.offsetX, e.offsetY)
 });
 
 function updateMousePosition(eX, eY) {
@@ -48,8 +52,10 @@ function update(t) {
 
     // for intro motion
     if (!mouseMoved) {
-        pointer.x = (.5 + .3 * Math.cos(.002 * t) * (Math.sin(.005 * t))) * window.innerWidth;
-        pointer.y = (.5 + .2 * (Math.cos(.005 * t)) + .1 * Math.cos(.01 * t)) * window.innerHeight;
+
+            pointer.x = .8 * (.6 + .5 * Math.sin(t / 900) * Math.sin(t / 9000)) * window.innerWidth;
+            pointer.y = .8 * (.6 + .25 * Math.sin(t / 100) * Math.cos(t / 1000)) * window.innerHeight;
+   
     }
 
     ctx_h.clearRect(0, 0, canvas_h.width, canvas_h.height);
@@ -68,11 +74,20 @@ function update(t) {
     ctx_h.moveTo(trail[0].x, trail[0].y);
 
     for (let i = 1; i < trail.length - 1; i++) {
-        const xc = .5 * (trail[i].x + trail[i + 1].x);
-        const yc = .5 * (trail[i].y + trail[i + 1].y);
+        const xc = trail[i].x;
+        const yc = trail[i].y;
+        let opacity = ".1";
+        let r = parseInt(clr_h.value.substring( 1, 3 ), 16)    
+        let g = parseInt( clr_h.value.substring( 3, 5 ), 16 )
+        let b = parseInt( clr_h.value.substring( 5, 7 ), 16 )
+        let rgba_c  = 'rgba(' + r + ',' + g + ',' + b + ', 1)'
+        let rgba_l  = 'rgba(' + r + ',' + g + ',' + b + ', .1)'
+        ctx_h.shadowBlur = 40;
+        ctx_h.shadowColor = rgba_c
         ctx_h.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
         ctx_h.lineWidth = params.widthFactor * (params.pointsNumber - i);
-        ctx_h.strokeStyle = clr_h.value;
+        ctx_h.strokeStyle = rgba_l;
+        ctx_h.lineCap = 'round';
         ctx_h.lineCap = 'round';
         ctx_h.stroke();
     }
